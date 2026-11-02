@@ -1,0 +1,26 @@
+[package]
+name = "postmin-app"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "PostMin desktop UI"
+
+[[bin]]
+name = "postmin"
+path = "src/main.rs"
+
+[dependencies]
+postmin-core = { path = "../postmin-core" }
+eframe.workspace = true
+egui.workspace = true
+dirs.workspace = true
+serde_json.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+rfd = "0.14"
+
+[target.'cfg(windows)'.build-dependencies]
+winres = "0.1"
+
+[target.'cfg(not(windows))'.dependencies]
+rfd = { version = "0.14", default-features = false, features = ["xdg-portal"] }

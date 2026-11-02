@@ -1,0 +1,26 @@
+[workspace]
+members = ["crates/postmin-core", "crates/postmin-app"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+authors = ["PostMin"]
+description = "A lightweight, native API client built with Rust and egui"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+uuid = { version = "1", features = ["v4"] }
+dirs = "5"
+quick-xml = "0.36"
+ureq = { version = "2.10", features = ["native-certs"] }
+encoding_rs = "0.8"
+eframe = "0.27"
+egui = "0.27"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
